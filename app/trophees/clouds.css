@@ -1,0 +1,76 @@
+/* Styles pour les mini nuages animés */
+.cloud {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.6;
+  animation: drift linear infinite;
+  z-index: 1;
+}
+
+.cloud-1 {
+  top: 10%;
+  animation-duration: 20s;
+  animation-delay: 0s;
+}
+
+.cloud-2 {
+  top: 25%;
+  animation-duration: 15s;
+  animation-delay: -5s;
+  font-size: 1.5rem;
+}
+
+.cloud-3 {
+  top: 40%;
+  animation-duration: 18s;
+  animation-delay: -10s;
+  font-size: 2.5rem;
+  opacity: 0.4;
+}
+
+.cloud-4 {
+  top: 60%;
+  animation-duration: 22s;
+  animation-delay: -7s;
+  font-size: 1.8rem;
+}
+
+.cloud-5 {
+  top: 80%;
+  animation-duration: 16s;
+  animation-delay: -12s;
+  font-size: 2.2rem;
+  opacity: 0.5;
+}
+
+.cloud-6 {
+  top: 5%;
+  animation-duration: 25s;
+  animation-delay: -15s;
+  font-size: 1.3rem;
+  opacity: 0.7;
+}
+
+/* Animation de dérive des nuages */
+@keyframes drift {
+  from {
+    transform: translateX(-100px);
+  }
+  to {
+    transform: translateX(calc(100vw + 100px));
+  }
+}
+
+/* Animation de pulsation légère pour les trophées */
+@keyframes trophy-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+  }
+}
+
+.trophy-obtained {
+  animation: trophy-glow 2s ease-in-out infinite;
+}

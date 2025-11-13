@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import './clouds.css';
 
 export default function TropheesPage() {
     const trophees = [
@@ -10,18 +11,28 @@ export default function TropheesPage() {
     ];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-700 to-purple-800 p-8">
+        <div className="min-h-screen bg-gradient-to-br from-blue-700 to-purple-800 p-8 relative overflow-hidden">
+            {/* Mini nuages animés en arrière-plan */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="cloud cloud-1">☁️</div>
+                <div className="cloud cloud-2">☁️</div>
+                <div className="cloud cloud-3">☁️</div>
+                <div className="cloud cloud-4">☁️</div>
+                <div className="cloud cloud-5">☁️</div>
+                <div className="cloud cloud-6">☁️</div>
+            </div>
+
             {/* Bouton retour */}
             <Link
                 href="/"
-                className="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition-all mb-8"
+                className="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition-all mb-8 relative z-10"
             >
                 <span>←</span>
                 <span>Retour</span>
             </Link>
 
             {/* Titre */}
-            <div className="text-center mb-12">
+            <div className="text-center mb-12 relative z-10">
                 <h1 className="text-6xl font-bold text-white mb-4">
                     🏆 Mes Trophées 🏆
                 </h1>
@@ -31,12 +42,12 @@ export default function TropheesPage() {
             </div>
 
             {/* Grille de trophées */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto relative z-10">
                 {trophees.map((trophee) => (
                     <div
                         key={trophee.id}
                         className={`p-6 rounded-xl shadow-2xl transition-all transform hover:scale-105 ${trophee.obtenu
-                                ? 'bg-gradient-to-br from-yellow-400 to-orange-500'
+                                ? 'bg-gradient-to-br from-yellow-400 to-orange-500 trophy-obtained'
                                 : 'bg-gray-600/50 grayscale opacity-60'
                             }`}
                     >
