@@ -2,12 +2,62 @@
 
 Projet de jeu web collaboratif entre Adam et Papa !
 
+> **🤖 Pour les AI Assistants (Copilot/Claude) :**
+> Ce projet utilise **Next.js 14 + TypeScript + Tailwind CSS**.
+> Stack complet configuré et prêt à l'emploi. Voir section "Quick Start for AI" ci-dessous.
+
 ## 🎮 Description
 
 **Zine Star** est un jeu web interactif moderne créé avec les meilleures technologies 2025 :
-- ⚛️ **Next.js 14** - Framework React ultra-performant
+- ⚛️ **Next.js 14** (App Router) - Framework React ultra-performant
 - 🎨 **Tailwind CSS** - Style moderne et responsive
 - 📘 **TypeScript** - Code robuste et maintenable
+- 🚀 **Déployable** sur Vercel en 1 clic
+
+## 🤖 Quick Start for AI Assistants
+
+**Pour Copilot/Claude/GitHub Copilot :**
+
+### Ce qui est déjà configuré ✅
+- ✅ Next.js 14 avec App Router
+- ✅ TypeScript (tsconfig.json configuré)
+- ✅ Tailwind CSS (tailwind.config.ts + postcss.config.js)
+- ✅ Structure du projet complète dans `/app`
+- ✅ Page d'accueil : `app/page.tsx`
+- ✅ Page trophées : `app/trophees/page.tsx`
+- ✅ Layout global : `app/layout.tsx`
+- ✅ Styles globaux : `app/globals.css`
+
+### Commandes essentielles
+```bash
+npm install          # Installer les dépendances
+npm run dev         # Lancer le serveur (http://localhost:3000)
+npm run build       # Build pour production
+```
+
+### Architecture du projet
+```
+app/
+├── layout.tsx       # Layout racine avec métadonnées
+├── page.tsx         # Page d'accueil (fond bleu, personnage, titre Zine Star)
+├── globals.css      # Tailwind + styles globaux
+└── trophees/
+    └── page.tsx     # Page des trophées avec système de progression
+```
+
+### Dépendances installées
+- `next`: ^14.2.0
+- `react`: ^18.3.0
+- `react-dom`: ^18.3.0
+- `typescript`: ^5.5.0
+- `tailwindcss`: ^3.4.0
+
+### Pour ajouter une nouvelle page
+1. Créer `app/nom-page/page.tsx`
+2. Next.js gère automatiquement le routing
+3. Exemple : `app/regles/page.tsx` → accessible sur `/regles`
+
+---
 
 ## 🚀 Installation & Configuration
 
@@ -38,7 +88,17 @@ cd jeu_adam_avancer
 
 # Installer les dépendances
 npm install
+
+# Lancer le serveur de développement
+npm run dev
 ```
+
+**🎯 Pour Adam :** Si c'est ta première fois, suis juste ces étapes :
+1. Ouvre le terminal dans VS Code
+2. Tape : `npm install` (attend que ça finisse)
+3. Tape : `npm run dev`
+4. Ouvre ton navigateur sur http://localhost:3000
+5. Commence à coder ! Le navigateur se rafraîchit automatiquement ✨
 
 ## 💻 Développement
 
