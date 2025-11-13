@@ -3,11 +3,8 @@ import './clouds.css';
 
 export default function TropheesPage() {
     const trophees = [
-        { id: 1, nom: "Premier pas", description: "Commencer l'aventure", icon: "🥉", obtenu: true },
-        { id: 2, nom: "Explorateur", description: "Visiter 5 niveaux", icon: "🗺️", obtenu: true },
-        { id: 3, nom: "Champion", description: "Gagner 10 parties", icon: "🥇", obtenu: false },
-        { id: 4, nom: "Maître", description: "Score parfait", icon: "👑", obtenu: false },
-        { id: 5, nom: "Légende", description: "100% complétion", icon: "⭐", obtenu: false },
+        { id: 1, nom: "Premier pas", description: "Commencer l'aventure", icon: "🥉", obtenu: true, slug: "premier-pas" },
+        { id: 2, nom: "Explorateur", description: "Collecter 1000 trophées", icon: "🗺️", obtenu: false, slug: "explorateur" },
     ];
 
     return (
@@ -44,33 +41,64 @@ export default function TropheesPage() {
             {/* Grille de trophées */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto relative z-10">
                 {trophees.map((trophee) => (
-                    <div
-                        key={trophee.id}
-                        className={`p-6 rounded-xl shadow-2xl transition-all transform hover:scale-105 ${trophee.obtenu
-                                ? 'bg-gradient-to-br from-yellow-400 to-orange-500 trophy-obtained'
-                                : 'bg-gray-600/50 grayscale opacity-60'
-                            }`}
-                    >
-                        <div className="text-center">
-                            <div className="text-6xl mb-4">{trophee.icon}</div>
-                            <h3 className="text-2xl font-bold text-white mb-2">
-                                {trophee.nom}
-                            </h3>
-                            <p className="text-white/90">
-                                {trophee.description}
-                            </p>
-                            {trophee.obtenu && (
-                                <div className="mt-4 text-green-900 font-bold">
-                                    ✓ Obtenu !
-                                </div>
-                            )}
-                            {!trophee.obtenu && (
-                                <div className="mt-4 text-gray-300 font-bold">
-                                    🔒 Verrouillé
-                                </div>
-                            )}
+                    trophee.obtenu ? (
+                        <Link 
+                            key={trophee.id}
+                            href={`/trophees/${trophee.slug}`}
+                            className={`block p-6 rounded-xl shadow-2xl transition-all transform hover:scale-105 cursor-pointer ${trophee.obtenu
+                                    ? 'bg-gradient-to-br from-yellow-400 to-orange-500 trophy-obtained'
+                                    : 'bg-gray-600/50 grayscale opacity-60'
+                                }`}
+                        >
+                            <div className="text-center">
+                                <div className="text-6xl mb-4">{trophee.icon}</div>
+                                <h3 className="text-2xl font-bold text-white mb-2">
+                                    {trophee.nom}
+                                </h3>
+                                <p className="text-white/90">
+                                    {trophee.description}
+                                </p>
+                                {trophee.obtenu && (
+                                    <div className="mt-4 text-green-900 font-bold">
+                                        ✓ Obtenu !
+                                    </div>
+                                )}
+                                {!trophee.obtenu && (
+                                    <div className="mt-4 text-gray-300 font-bold">
+                                        🔒 Verrouillé
+                                    </div>
+                                )}
+                            </div>
+                        </Link>
+                    ) : (
+                        <div
+                            key={trophee.id}
+                            className={`p-6 rounded-xl shadow-2xl transition-all transform ${trophee.obtenu
+                                    ? 'bg-gradient-to-br from-yellow-400 to-orange-500 trophy-obtained'
+                                    : 'bg-gray-600/50 grayscale opacity-60'
+                                }`}
+                        >
+                            <div className="text-center">
+                                <div className="text-6xl mb-4">{trophee.icon}</div>
+                                <h3 className="text-2xl font-bold text-white mb-2">
+                                    {trophee.nom}
+                                </h3>
+                                <p className="text-white/90">
+                                    {trophee.description}
+                                </p>
+                                {trophee.obtenu && (
+                                    <div className="mt-4 text-green-900 font-bold">
+                                        ✓ Obtenu !
+                                    </div>
+                                )}
+                                {!trophee.obtenu && (
+                                    <div className="mt-4 text-gray-300 font-bold">
+                                        🔒 Verrouillé
+                                    </div>
+                                )}
+                            </div>
                         </div>
-                    </div>
+                    )
                 ))}
             </div>
         </div>
