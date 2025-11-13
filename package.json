@@ -1,0 +1,40 @@
+{
+  "name": "jeu_adam_avancer",
+  "version": "1.0.0",
+  "description": "Projet de jeu collaboratif Zine Star entre Adam et son père.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamledams-prog/jeu_adam_avancer.git"
+  },
+  "keywords": [
+    "game",
+    "nextjs",
+    "typescript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adamledams-prog/jeu_adam_avancer/issues"
+  },
+  "homepage": "https://github.com/adamledams-prog/jeu_adam_avancer#readme",
+  "dependencies": {
+    "next": "^14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.4.0",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.5.0"
+  }
+}
