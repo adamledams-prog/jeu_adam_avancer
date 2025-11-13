@@ -5,6 +5,9 @@ export default function PremierPasPage() {
     // Nombre de trophées actuellement possédés (1 seul pour l'instant)
     const tropheesActuels = 1;
     
+    // Pièces de départ
+    const piecesDeDepart = 100;
+    
     const recompenses = [
         { id: 1, nom: "Pièces d'or", description: "100 pièces", icon: "🪙", obtenu: false, requis: 10, valeur: 100 },
         { id: 2, nom: "Gemmes rares", description: "5 gemmes", icon: "💎", obtenu: false, requis: 20, valeur: 5 },
@@ -20,8 +23,6 @@ export default function PremierPasPage() {
     }));
 
     const recompensesObtenues = recompensesAvecStatut.filter(r => r.obtenu);
-    const totalPieces = recompensesObtenues.filter(r => r.icon === "🪙").reduce((total, item) => total + item.valeur, 0);
-    const totalGemmes = recompensesObtenues.filter(r => r.icon === "💎").reduce((total, item) => total + item.valeur, 0);
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-700 to-purple-800 p-8 relative overflow-hidden">
@@ -73,18 +74,14 @@ export default function PremierPasPage() {
 
             {/* Statistiques */}
             <div className="max-w-4xl mx-auto mb-12 relative z-10">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-white/20 backdrop-blur-lg p-6 rounded-xl text-center">
                         <div className="text-3xl font-bold text-yellow-300 mb-2">{recompensesObtenues.length}</div>
                         <div className="text-white">Récompenses débloquées</div>
                     </div>
                     <div className="bg-white/20 backdrop-blur-lg p-6 rounded-xl text-center">
-                        <div className="text-3xl font-bold text-yellow-300 mb-2">{totalPieces}</div>
-                        <div className="text-white">Pièces d'or</div>
-                    </div>
-                    <div className="bg-white/20 backdrop-blur-lg p-6 rounded-xl text-center">
-                        <div className="text-3xl font-bold text-purple-300 mb-2">{totalGemmes}</div>
-                        <div className="text-white">Gemmes</div>
+                        <div className="text-3xl font-bold text-yellow-300 mb-2">{piecesDeDepart}</div>
+                        <div className="text-white">Pièces actuelles</div>
                     </div>
                 </div>
             </div>
