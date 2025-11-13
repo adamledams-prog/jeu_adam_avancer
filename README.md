@@ -14,6 +14,10 @@ Projet de jeu web collaboratif entre Adam et Papa !
 - 📘 **TypeScript** - Code robuste et maintenable
 - 🚀 **Déployable** sur Vercel en 1 clic
 
+> **🪟 Adam (Windows) :** Si tu as des problèmes avec PowerShell, lis [SETUP_WINDOWS.md](./SETUP_WINDOWS.md) !
+>
+> **🍎 Papa (macOS) :** Tout est déjà configuré, continue sur `papa-dev` !
+
 ## 🤖 Quick Start for AI Assistants
 
 **Pour Copilot/Claude/GitHub Copilot :**
