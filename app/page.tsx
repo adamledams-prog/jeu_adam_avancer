@@ -70,17 +70,15 @@ export default function Home() {
                     <p className="text-2xl text-white/90 font-medium">
                         ⭐ L&apos;aventure commence ici ! ⭐
                     </p>
-
-                    <div className="flex gap-4 justify-center mt-12">
-                        <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-xl shadow-lg transition-all transform hover:scale-110 text-xl">
-                            🎯 Commencer
-                        </button>
-                        <button className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-4 px-8 rounded-xl shadow-lg transition-all transform hover:scale-110 text-xl">
-                            📚 Règles
-                        </button>
-                    </div>
                 </div>
             </main>
+
+            {/* Bouton Jouer en bas à droite */}
+            <div className="absolute bottom-8 right-8">
+                <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-xl shadow-lg transition-all transform hover:scale-110 text-xl">
+                    🎮 Jouer
+                </button>
+            </div>
 
             {/* Étoiles décoratives */}
             <div className="absolute top-10 left-1/4 text-4xl animate-spin-slow">⭐</div>
