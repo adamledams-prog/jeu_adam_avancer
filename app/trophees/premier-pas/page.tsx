@@ -1,9 +1,28 @@
+'use client';
+
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 import '../clouds.css';
 
 export default function PremierPasPage() {
-    // Nombre de trophées actuellement possédés (1 seul pour l'instant)
-    const tropheesActuels = 1;
+    const [tropheesActuels, setTropheesActuels] = useState(1);
+
+    // Charger le nombre de trophées depuis localStorage
+    useEffect(() => {
+        const updateTrophees = () => {
+            const savedTrophees = localStorage.getItem('playerTrophees');
+            if (savedTrophees) {
+                setTropheesActuels(parseInt(savedTrophees));
+            }
+        };
+
+        updateTrophees();
+        const interval = setInterval(updateTrophees, 500);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
     
     // Pièces de départ
     const piecesDeDepart = 100;
@@ -12,7 +31,7 @@ export default function PremierPasPage() {
         { id: 1, nom: "Pièces d'or", description: "100 pièces", icon: "🪙", obtenu: false, requis: 10, valeur: 100 },
         { id: 2, nom: "Gemmes rares", description: "5 gemmes", icon: "💎", obtenu: false, requis: 20, valeur: 5 },
         { id: 3, nom: "Pièces d'or", description: "150 pièces", icon: "🪙", obtenu: false, requis: 30, valeur: 150 },
-        { id: 4, nom: "Gemmes rares", description: "8 gemmes", icon: "💎", obtenu: false, requis: 40, valeur: 8 },
+        { id: 4, nom: "Personnage Attaquant", description: "Débloque l'Attaquant", icon: "👨", obtenu: false, requis: 40, valeur: "Attaquant" },
         { id: 5, nom: "Pièces d'or", description: "200 pièces", icon: "🪙", obtenu: false, requis: 50, valeur: 200 },
     ];
 
@@ -44,6 +63,8 @@ export default function PremierPasPage() {
                 <span>←</span>
                 <span>Retour aux trophées</span>
             </Link>
+
+
 
             {/* En-tête du trophée */}
             <div className="text-center mb-12 relative z-10">
@@ -85,6 +106,8 @@ export default function PremierPasPage() {
                     </div>
                 </div>
             </div>
+
+
 
             {/* Titre des récompenses */}
             <div className="text-center mb-8 relative z-10">
@@ -151,6 +174,7 @@ export default function PremierPasPage() {
                         <p>• 10 trophées → 100 pièces d'or 🪙</p>
                         <p>• 20 trophées → 5 gemmes rares 💎</p>
                         <p>• 30 trophées → 150 pièces d'or 🪙</p>
+                        <p>• 40 trophées → Personnage Attaquant 👨</p>
                         <p><strong>Prochain objectif :</strong> Collecter 1000 trophées pour débloquer "Explorateur" 🗺️</p>
                     </div>
                 </div>

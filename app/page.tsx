@@ -1,6 +1,73 @@
+'use client';
+
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
 export default function Home() {
+    const [pieces, setPieces] = useState(100);
+    const [trophees, setTrophees] = useState(1);
+    const [enCombat, setEnCombat] = useState(false);
+    const [messageCombat, setMessageCombat] = useState('');
+
+    // Charger les pièces et trophées depuis localStorage
+    useEffect(() => {
+        // Charger les pièces (ne pas forcer à 100)
+        const savedPieces = localStorage.getItem('playerPieces');
+        if (savedPieces) {
+            setPieces(parseInt(savedPieces));
+        } else {
+            // Seulement initialiser si pas encore défini
+            localStorage.setItem('playerPieces', '100');
+            setPieces(100);
+        }
+
+        // Charger les trophées
+        const savedTrophees = localStorage.getItem('playerTrophees');
+        if (savedTrophees) {
+            setTrophees(parseInt(savedTrophees));
+        } else {
+            localStorage.setItem('playerTrophees', '1');
+            setTrophees(1);
+        }
+
+        // Vérifier périodiquement pour les changements
+        const interval = setInterval(() => {
+            const nouvelles = parseInt(localStorage.getItem('playerPieces') || '100');
+            const nouveauxTrophees = parseInt(localStorage.getItem('playerTrophees') || '1');
+            setPieces(nouvelles);
+            setTrophees(nouveauxTrophees);
+        }, 500);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
+
+    // Fonction de combat contre l'IA
+    const lancerCombat = () => {
+        setEnCombat(true);
+        setMessageCombat('⚔️ Combat en cours...');
+
+        // Simulation du combat avec un délai
+        setTimeout(() => {
+            const victoire = Math.random() > 0.3; // 70% de chance de gagner
+            
+            if (victoire) {
+                const nouveauxTrophees = trophees + 5;
+                setTrophees(nouveauxTrophees);
+                localStorage.setItem('playerTrophees', nouveauxTrophees.toString());
+                setMessageCombat('🎉 Victoire ! +5 trophées !');
+            } else {
+                setMessageCombat('💀 Défaite... Réessayez !');
+            }
+
+            // Cacher le message après 3 secondes
+            setTimeout(() => {
+                setEnCombat(false);
+                setMessageCombat('');
+            }, 3000);
+        }, 2000);
+    };
     return (
         <div className="min-h-screen bg-blue-700 relative overflow-hidden">
             {/* Header avec trophées et monnaies */}
@@ -8,10 +75,16 @@ export default function Home() {
                 <div className="flex flex-col items-end gap-4">
                     {/* Affichage des monnaies */}
                     <div className="flex items-center gap-3">
+                        {/* Trophées */}
+                        <div className="flex items-center gap-2 bg-orange-500/90 backdrop-blur-sm text-white font-bold py-2 px-4 rounded-lg shadow-lg">
+                            <span className="text-2xl">🏆</span>
+                            <span className="text-lg">{trophees}</span>
+                        </div>
+
                         {/* Pièces */}
-                        <div className="flex items-center gap-2 bg-yellow-400/90 backdrop-blur-sm text-gray-900 font-bold py-2 px-4 rounded-lg shadow-lg">
+                        <div className="flex items-center gap-2 bg-yellow-400/90 backdrop-blur-sm text-gray-900 font-bold py-2 px-4 rounded-lg shadow-lg" id="pieces-counter">
                             <span className="text-2xl">🪙</span>
-                            <span className="text-lg">100</span>
+                            <span className="text-lg">{pieces}</span>
                         </div>
                         
                         {/* Gemmes */}
@@ -75,10 +148,27 @@ export default function Home() {
 
             {/* Bouton Jouer en bas à droite */}
             <div className="absolute bottom-8 right-8">
-                <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-xl shadow-lg transition-all transform hover:scale-110 text-xl">
-                    🎮 Jouer
+                <button 
+                    onClick={lancerCombat}
+                    disabled={enCombat}
+                    className={`font-bold py-4 px-8 rounded-xl shadow-lg transition-all transform text-xl ${
+                        enCombat 
+                            ? 'bg-gray-500 text-gray-300 cursor-not-allowed'
+                            : 'bg-green-500 hover:bg-green-600 text-white hover:scale-110'
+                    }`}
+                >
+                    {enCombat ? '⚔️ Combat...' : '🎮 Jouer'}
                 </button>
             </div>
+
+            {/* Message de combat */}
+            {messageCombat && (
+                <div className="absolute bottom-24 right-8">
+                    <div className="bg-black/80 backdrop-blur-sm text-white font-bold py-3 px-6 rounded-lg shadow-2xl animate-bounce">
+                        {messageCombat}
+                    </div>
+                </div>
+            )}
 
             {/* Étoiles décoratives */}
             <div className="absolute top-10 left-1/4 text-4xl animate-spin-slow">⭐</div>
