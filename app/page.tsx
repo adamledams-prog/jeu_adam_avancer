@@ -146,19 +146,28 @@ export default function Home() {
                 </div>
             </main>
 
-            {/* Bouton Jouer en bas à droite */}
-            <div className="absolute bottom-8 right-8">
+            {/* Boutons en bas à droite */}
+            <div className="absolute bottom-8 right-8 flex flex-col gap-4">
+                {/* Bouton Combat rapide */}
                 <button 
                     onClick={lancerCombat}
                     disabled={enCombat}
-                    className={`font-bold py-4 px-8 rounded-xl shadow-lg transition-all transform text-xl ${
+                    className={`font-bold py-3 px-6 rounded-xl shadow-lg transition-all transform ${
                         enCombat 
                             ? 'bg-gray-500 text-gray-300 cursor-not-allowed'
-                            : 'bg-green-500 hover:bg-green-600 text-white hover:scale-110'
+                            : 'bg-orange-500 hover:bg-orange-600 text-white hover:scale-110'
                     }`}
                 >
-                    {enCombat ? '⚔️ Combat...' : '🎮 Jouer'}
+                    {enCombat ? '⚔️ Combat...' : '⚡ Combat rapide'}
                 </button>
+
+                {/* Bouton Map de combat */}
+                <Link
+                    href="/combat"
+                    className="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-xl shadow-lg transition-all transform hover:scale-110 text-xl text-center"
+                >
+                    🗺️ Carte de Combat
+                </Link>
             </div>
 
             {/* Message de combat */}
